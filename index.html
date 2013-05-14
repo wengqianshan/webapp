@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]>    <html class="no-js iem7"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>VM移动版</title>
+        <meta name="description" content="">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0;">
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" />
+        <meta http-equiv="cleartype" content="on">
+
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png">
+        <link rel="shortcut icon" href="img/touch/apple-touch-icon.png">
+
+
+        <!-- For iOS web apps. Delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="">
+
+        <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
+        <!--
+        <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
+        -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/scrollbar.css">
+        <link rel="stylesheet" href="css/layout.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-left"></div>
+            <div class="header-right"></div>
+            <h1 class="title">管理控制台</h1>
+        </header>
+        <div class="pages">
+            <!--机器状态 start-->
+            <section class="page page-status" data-page="status">
+                <div id="J_scroll_chart" style="position: absolute; top: 0; right: 0; bottom: 0em; left: 0;">
+                    <div class="scroller" style="height: 1500px;">
+                        <div id="canvas" style="width: 100%; height: 200px;"></div>
+                    </div>
+                </div>
+            </section>
+            <!--机器状态 end-->
+            <!--登录 start-->
+            <section id="J_page_login" class="page page-login" data-page="login">
+                <div class="scroller">
+                    <div class="head">
+                        <h1>管理控制台</h1>
+                    </div>
+                    <div class="body">
+                        <div class="field-row">
+                            <label>用户名</label>
+                            <div class="field-control">
+                                <input class="input" type="text" />
+                            </div>
+                        </div>
+                        <div class="field-row">
+                            <label>密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                            <div class="field-control">
+                                <input class="input" type="password" />
+                            </div>
+                        </div>
+                        <div class="field-row">
+                            <label></label>
+                            <div class="field-control">
+                                <button class="btn btn-login" id="J_btn_login">登录</button><a href="#"><i class="icon-alipay"></i>支付宝账号登录</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="foot"></div>
+                </div>
+            </section>
+            <!--登录 end-->
+
+            <!--服务器列表 start-->
+            <section class="page page-list" data-page="list">
+                <div class="head">
+                    <ul class="list-head clearfix">
+                        <li style="width: 60%">服务器名称</li>
+                        <li style="width: 20%">云盾</li>
+                        <li style="width: 20%">状态</li>
+                    </ul>
+                </div>
+                <div class="body" id="J_scroll_list">
+                    <div class="scroller">
+                        <ul class="list-view">
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-safe"></i></span>
+                                <span class="l-status">运行中</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                            <li class="clearfix">
+                                <span class="l-name">服务器</span>
+                                <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+                                <span class="l-status">即将到期</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!--服务器列表 end-->
+
+            <!--服务器详情 start-->
+            <section class="page page-detail" data-page="detail" style="background-color: #eaeaea;">
+                <div class="head">
+                    <ul class="tab-nav">
+                        <li>
+                            <a href="#">系统资源监控</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">详细信息</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body">
+                    <div class="tab-content">
+
+                    </div>
+                    <div class="tab-content active" id="J_scroll_detail">
+                        <div class="scroller" style="padding-bottom: 30px;">
+                            <header>
+                                <dl>
+                                    <dt><i class="icon icon-redhat"></i>ID:</dt>
+                                    <dd>ABCDEFGHIGKLMNOPQRSTUVWXYZ1234567890</dd>
+                                </dl>
+                            </header>
+                            <ul class="list-group">
+                                <li>
+                                    <a href="#">创建时间：2012-05-10 19:24</a>
+                                </li>
+                                <li>
+                                    <a href="#">即将到期：2013-05-10 19:24</a>
+                                </li>
+                                <li>
+                                    <a href="#">续费</a>
+                                </li>
+                            </ul>
+                            <ul class="list-group">
+                                <li>
+                                    <ul class="list-info list-info-two clearfix">
+                                        <li>CPU核数：4核</li>
+                                        <li>内存：24G</li>
+                                        <li>配置类型：标准4型</li>
+                                        <li>区域：华东杭州节点</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">操作系统：Red Hat Enterprise Linux Server 5.4 64位 安全加固版</a>
+                                </li>
+                            </ul>
+                            <ul class="list-group">
+                                <li><a class="l-name" href="#">服务器状态：已停止</a></li>
+                                <li><a href="#">下辖云磁盘：5个</a></li>
+                                <li><a href="#">自动释放时间：每周三00:00</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--服务器详情 end-->
+            <!--关于-->
+            <section class="page page-about" data-page="about">
+                <h2>关于我们</h2>
+                <p>阿里云计算有限公司</p>
+                <button class="btn" id="J_create">创建新页面</button>
+            </section>
+        </div>
+        <footer class="footer">
+           
+        </footer>
+        <!-- Add your site or application content here -->
+        <script type="text/template" id="J_tmpl_header">
+            <!--<a href="#" class="header-left btn-back">返回</a>-->
+            <div class="header-left"></div>
+            <div class="header-right"></div>
+            <h1 class="title">管理控制台</h1>
+            <!--<a href="#" class="header-right btn-refresh">刷新</a>-->
+        </script>
+        <script type="text/template" id="J_tmpl_footer">
+            <nav>
+                <ul>
+                    <li data-nav="index">
+                        <a href="#">概况</a>
+                    </li>
+                    <li data-nav="list">
+                        <a href="#">云服务器</a>
+                    </li>
+                    <li data-nav="status">
+                        <a href="#">云磁盘</a>
+                    </li>
+                    <li data-nav="detail">
+                        <a href="#">快照</a>
+                    </li>
+                    <li data-nav="about">
+                        <a href="#">镜像</a>
+                    </li>
+                </ul>
+            </nav>
+        </script>
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/template.min.js"></script>
+        <script src="js/vendor/highcharts.js"></script>
+        <script src="js/vendor/iscroll.js"></script>
+        <script src="js/helper.js"></script>
+        <script src="js/main.js"></script>
+
+        <script>
+            template.openTag = "{{";
+            template.closeTag = "}}";
+
+            var myScroll, myScroll1, myScroll2, myScroll3;
+            function loaded() {
+                myScroll = new iScroll('J_scroll_chart', { scrollbarClass: 'myScrollbar', onBeforeScrollStart: function(e){
+                            var target = e.target;
+                            while (target.nodeType != 1) target = target.parentNode;
+
+                            if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+                              e.preventDefault();
+                }});
+                myScroll1 = new iScroll('J_scroll_detail', { scrollbarClass: 'myScrollbar', onBeforeScrollStart:function(e){
+                            var target = e.target;
+                            while (target.nodeType != 1) target = target.parentNode;
+
+                            if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+                              e.preventDefault();
+                }});
+                myScroll2 = new iScroll('J_page_login', { scrollbarClass: 'myScrollbar', onBeforeScrollStart:function(e){
+                            var target = e.target;
+                            while (target.nodeType != 1) target = target.parentNode;
+
+                            if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+                              e.preventDefault();
+                }});
+                
+                myScroll3 = new iScroll('J_scroll_list', { scrollbarClass: 'myScrollbar', onBeforeScrollStart:function(e){
+                            var target = e.target;
+                            while (target.nodeType != 1) target = target.parentNode;
+
+                            if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+                              e.preventDefault();
+                }});
+
+            }
+
+            document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+            document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+        </script>
+    </body>
+</html>

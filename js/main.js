@@ -85,21 +85,21 @@ PageManager.prototype = {
                 $: $item
             })
         });
-        //console.log(this.pages)
     },
     //页面跳转
-    navTo: function(pageName){
+    navTo: function(pageName, param){
         var _this = this;
         var hasPage = false;
+        var fromPage = this.activePage;
         $('.page').removeClass('active');
         $(this.pages).each(function(i, item){
             var $ele = item.$,
                 name = item.name;
             if(name === pageName){
                 hasPage = true;
-                _this.activePage = $ele;
+                _this.activePage = item;
                 $ele.addClass('active');
-                $(document).trigger('page.' + pageName, pageName);
+                $(document).trigger('page.' + pageName, [pageName, fromPage, param]);//pagename, from, param
                 return false;
             }
         });
@@ -110,7 +110,13 @@ PageManager.prototype = {
     },
     //获取当前页
     getActivePage: function(){
-        return this.activePage || $('.page.active');
+        return this.activePage || (function(){
+            var $active = $('.page.active');
+            return {
+                name: $active.attr('data-page'),
+                $: $active
+            }
+        }());
     },
     //获取页面
     getPage: function(pageName){
@@ -153,17 +159,20 @@ PageManager.prototype = {
         //从DOM中删除
         $('.page[data-page="' + pageName + '"]').remove();
     },
-    //布局控制：占满空间
-    stretch: function(){
-        this.getActivePage().addClass('stretch');
+    //布局控制：占满空间, 参数page：
+    stretch: function(page){
+        var pageObj = page || this.getActivePage();
+        pageObj.$.addClass('stretch');
     },
     //布局控制：占满顶部
-    stretchHeader: function(){
-        this.getActivePage().addClass('stretch-header');
+    stretchHeader: function(page){
+        var pageObj = page || this.getActivePage();
+        pageObj.$.addClass('stretch-header');
     },
     //布局控制：占满底部
     stretchFooter: function(){
-        this.getActivePage().addClass('stretch-footer');
+        var pageObj = page || this.getActivePage();
+        pageObj.$.addClass('stretch-footer');
     },
     //收缩
     shrink: function(){
@@ -205,17 +214,17 @@ HistoryManager.prototype = {
             footer: footer,
             page: obj.page
         });
-        console.log('add:', obj.page.name)
+        console.log('History add:', obj.page.name)
     },
     back: function(){
-        //alert('back')
         if(this.historys.length < 1){
             return;
         }
-        //var obj = this.historys.splice(-1)[0];
-        var obj = this.historys.pop();
+        var obj = this.historys.splice(-1)[0];
+        //var obj = this.historys.pop();
         navManager.render(obj.header, obj.footer);
         pageManager.navTo(obj.page.name)
+        console.log('History remove:', obj.page.name)
         //return obj;
     }
 };
@@ -228,15 +237,6 @@ var NavManager = function(){
     var _this = this;
     this.headerWrap = $('.header');
     this.footerWrap = $('.footer');
-    /*var defaultHeader = {
-        html: template.render('J_tmpl_header'),
-        fn: function($html){
-            $($html[0]).on('click', function(e){
-                e.preventDefault();
-                historyManager.back();
-            })
-        }
-    };*/
     var defaultHeader = {
         title: {
             text: "管理控制台",
@@ -248,8 +248,7 @@ var NavManager = function(){
                     type: "back",
                     text: "返回",
                     fn: function(){
-                        this.off().on('click', function(e){
-                            console.log('1111')
+                        this.off().on('touchstart click', function(e){
                             e.preventDefault();
                             historyManager.back();
                         })
@@ -288,14 +287,6 @@ NavManager.prototype = {
         this.render();
     },
     render: function(header, footer){
-        /*var header = $.extend(this.header, header);
-        var footer = $.extend(this.footer, footer);
-        var $headerHtml = $(header.html);
-        var $footerHtml = $(footer.html);
-        this.headerWrap.empty().append($headerHtml).show();
-        this.footerWrap.empty().append($footerHtml).show();
-        header.fn.call(null, $headerHtml);
-        footer.fn.call(null, $footerHtml);*/
         var header = $.extend(this.header, header);
         var footer = $.extend(this.footer, footer);
         this.renderHeader(header);
@@ -332,6 +323,7 @@ NavManager.prototype = {
             refresh: '<a href="#" class="btn-refresh">刷新</a>'
         }
         var tag = $(button[obj.type]);
+        tag.html(obj.text);
         obj.fn.call($(tag));
         return tag;
     }
@@ -364,9 +356,9 @@ AppManager.prototype = {
         //pageManager.navTo(p.name);
         //pageManager.stretch();
         //end
-        
     },
-    initLoginPage: function(){
+    initLoginPage: function(e, pageName, fromPage, param){
+        //console.log(fromPage)
         navManager.headerWrap.hide();
         navManager.footerWrap.hide();
         pageManager.stretch();
@@ -380,7 +372,8 @@ AppManager.prototype = {
         });
         
     },
-    initListPage: function(){
+    initListPage: function(e, pageName, fromPage, param){
+        //console.log(fromPage)
         navManager.headerWrap.show();
         var header = {
             title: {
@@ -402,7 +395,8 @@ AppManager.prototype = {
         })
         
     },
-    initDetailPage: function(){
+    initDetailPage: function(e, pageName, fromPage, param){
+        //console.log(fromPage)
         navManager.headerWrap.show();
         navManager.footerWrap.show();
         var header = {
@@ -427,7 +421,7 @@ AppManager.prototype = {
         })
         
     },
-    initAboutPage: function(){
+    initAboutPage: function(e, pageName, fromPage, param){
         var header = {
             title: {
                 text: '关于我们'

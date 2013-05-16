@@ -468,3 +468,4 @@ AppManager.prototype = {
 var appManager = new AppManager();
 appManager.init();
 
+//no change

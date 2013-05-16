@@ -381,7 +381,7 @@ AppManager.prototype = {
                         fn: function(){
                             this.on('touchstart click', function(e){
                                 e.preventDefault();
-                                alert('不要刷新我')
+                                alert('不要刷新我');
                             })
                         }
                     }

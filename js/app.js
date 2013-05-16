@@ -115,7 +115,7 @@ AppManager.prototype = {
                     name: 'login'
                 }
             });
-            pageManager.navTo('detail');
+            pageManager.navTo('list');
         });
         
     },

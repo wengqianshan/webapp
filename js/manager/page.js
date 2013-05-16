@@ -33,7 +33,7 @@
                   hasPage = true;
                   _this.activePage = item;
                   $ele.addClass('active');
-                  $(document).trigger('page.' + pageName, [pageName, fromPage, param]);//pagename, from, param
+                  $(document).trigger('page', [pageName, fromPage, param]);//pagename, from, param
                   return false;
               }
           });

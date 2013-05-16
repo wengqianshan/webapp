@@ -73,6 +73,7 @@ var AppManager = function(){
 };
 AppManager.prototype = {
     init: function(){
+        var _this = this;
         pageManager.init();
         navManager.init();
 
@@ -87,25 +88,39 @@ AppManager.prototype = {
         $document.on('history.add', function(e, obj){
             //console.log('add event')
         });
-        $document.on('page.login', this.initLoginPage);
-        $document.on('page.list', this.initListPage);
-        $document.on('page.detail', this.initDetailPage);
-        $document.on('page.about', this.initAboutPage);
+        //动态配置页面功能
+        $document.on('page', function(){//e, pageName, fromPage, param
+            var args = arguments;
+            var _method = _this.makeFun(args[1]);
+            if(!_this[_method]){
+                console.log('奥嚎，功能还没写哦');
+                return;
+            }
+            _this[_method].apply(_this, Array.prototype.slice.call(arguments));
+        })
         //默认使用登录页
         pageManager.navTo('login');
 
         //动态创建页面例子
         var p = pageManager.createPage('', 'Hello UED');
-        $document.on('page.' + p.name, function(e, name, fromPage, param){
-            //alert(name)
-            console.log('我是页面:', name, '，我来自页面:', fromPage, '，参数是:', param)
-        })
+        //动态创建动态方法
+        /*_this[_this.makeFun(p.name)] = function(e, pageName, fromPage, param){
+            alert(arguments[1]);
+            console.log(_this)
+        }*/
         //pageManager.navTo(p.name, {id: 100});
         //pageManager.stretch();
         //end
     },
+    makeFun: function(pageName){
+        var upName = pageName.replace(/\b\w+\b/g, function(word){
+            //console.log(word)
+            return word.substring(0,1).toUpperCase()+word.substring(1);
+        });
+        return 'init' + upName + 'Page';
+    },
     initLoginPage: function(e, pageName, fromPage, param){
-        //console.log(fromPage)
+        console.log(e, pageName, fromPage, param, 'lll')
         navManager.headerWrap.hide();
         navManager.footerWrap.hide();
         pageManager.stretch();
@@ -183,6 +198,7 @@ AppManager.prototype = {
         
     },
     initAboutPage: function(e, pageName, fromPage, param){
+        var _this = this;
         var header = {
             title: {
                 text: '关于我们'
@@ -196,9 +212,6 @@ AppManager.prototype = {
                     name: 'about'
                 }
             });
-
-
-
             var $this= $(this);
             if($this.attr('data-nav')){
                 pageManager.navTo($this.attr('data-nav'));
@@ -209,12 +222,13 @@ AppManager.prototype = {
                 });
                 return false;
             }
-            var p = pageManager.createPage();
+            var p = pageManager.createPage('', '<p style="color: #fff;">这是个新页面</p>');
             $this.attr('data-nav', p.name);
-            p.$.html('<p style="color: #fff;">这是个新页面</p>');
-            $(document).on('page.' + p.name, function(e, name){
-                //alert(name)
-            })
+            //动态创建动态方法
+            _this[_this.makeFun(p.name)] = function(){
+                alert(arguments[1]);
+                console.log(_this)
+            }
             pageManager.navTo(p.name);
             navManager.render({
                 title: {
@@ -229,4 +243,15 @@ AppManager.prototype = {
 var appManager = new AppManager();
 appManager.init();
 
-//no change
+//下一步，考虑page的智能化
+//定义一个页面
+//PAGE.list = function(){}
+/*
+document.on('page', function(e, pageName){
+    if(PAGE[pageName]){
+    console.log('奥嚎，功能还没写哦');
+    return;
+    }
+    PAGE[pageName]();
+})
+*/

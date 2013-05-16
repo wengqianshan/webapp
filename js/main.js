@@ -188,19 +188,13 @@ pageManager.init();
 var HistoryManager = function(){
     this.historys = [];
     //历史信息单位
-    var obj = {
-        header: {
-            html: '',
-            fn: function(){}
-        },
-        footer: {
-            html: '',
-            fn: function(){}
-        },
+    /*var obj = {
+        header: navManager.header,
+        footer: navManager.footer,
         page: {
             name: 'list'
         }
-    }
+    }*/
 };
 HistoryManager.prototype = {
     init: function(){
@@ -248,7 +242,7 @@ var NavManager = function(){
                     type: "back",
                     text: "返回",
                     fn: function(){
-                        this.off().on('touchstart click', function(e){
+                        this.on('touchstart click', function(e){
                             e.preventDefault();
                             historyManager.back();
                         })
@@ -324,7 +318,7 @@ NavManager.prototype = {
         }
         var tag = $(button[obj.type]);
         tag.html(obj.text);
-        obj.fn.call($(tag));
+        obj.fn && obj.fn.call($(tag));
         return tag;
     }
 };
@@ -348,12 +342,12 @@ AppManager.prototype = {
         pageManager.navTo('login');
 
         //动态创建页面例子
-        var p = pageManager.createPage();
-        p.$.html('<p style="color: #fff;">xiaoshan</p>');
-        $document.on('page.' + p.name, function(e, name){
+        var p = pageManager.createPage('', 'Hello UED');
+        $document.on('page.' + p.name, function(e, name, fromPage, param){
             //alert(name)
+            console.log('我是页面:', name, '，我来自页面:', fromPage, '，参数是:', param)
         })
-        //pageManager.navTo(p.name);
+        //pageManager.navTo(p.name, {id: 100});
         //pageManager.stretch();
         //end
     },
@@ -378,6 +372,20 @@ AppManager.prototype = {
         var header = {
             title: {
                 text: '服务器列表'
+            },
+            right: {
+                actions: [
+                    {
+                        type: 'refresh',
+                        text: '刷新',
+                        fn: function(){
+                            this.on('touchstart click', function(e){
+                                e.preventDefault();
+                                alert('不要刷新我')
+                            })
+                        }
+                    }
+                ]
             }
         };
         navManager.render(header);

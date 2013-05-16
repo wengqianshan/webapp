@@ -1,7 +1,3 @@
-$(window).on('load', function(){
-    //setTimeout(function(){window.scrollTo(0,1)},0);
-});
-
 //图表
 var chart1; // globally available
 $(document).ready(function() {

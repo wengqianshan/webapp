@@ -119,6 +119,25 @@ AppManager.prototype = {
         });
         return 'init' + upName + 'Page';
     },
+    //滚动一个布局
+    scrollPanel: function(id, option){
+        var defaultOption = {
+            scrollbarClass: 'myScrollbar',
+            onBeforeScrollStart: function(e){
+                var target = e.target;
+                while (target.nodeType != 1) target = target.parentNode;
+                if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+                  e.preventDefault();
+            }
+        };
+        var opt = $.extend(defaultOption, option);
+        var $panel = $('#' + id);
+        if($panel.data('scroller')){
+            return;
+        }
+        var myScroll = new iScroll(id, opt);
+        $panel.data('scroller', myScroll);
+    },
     initLoginPage: function(e, pageName, fromPage, param){
         console.log(e, pageName, fromPage, param, 'lll')
         navManager.headerWrap.hide();
@@ -132,8 +151,31 @@ AppManager.prototype = {
             });
             pageManager.navTo('list');
         });
-        
+
+        //滚动控制
+        /*var $loginPanel = $('#J_page_login');
+        if(!$loginPanel.data('scroller')){
+            var myScroll = new iScroll('J_page_login', { scrollbarClass: 'myScrollbar', onBeforeScrollStart:function(e){
+                var target = e.target;
+                while (target.nodeType != 1) target = target.parentNode;
+                if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+                  e.preventDefault();
+            }});
+            $loginPanel.data('scroller', myScroll);
+        }*/
+        this.scrollPanel('J_page_login');
     },
+    //图表页
+    initStatusPage: function(){
+        //滚动控制
+        /*var $chart = $('#J_scroll_chart');
+        if(!$chart.data('scroller')){
+            var myScroll = new iScroll('J_scroll_chart', { scrollbarClass: 'myScrollbar'});
+            $chart.data('scroller', myScroll);
+        }*/
+        this.scrollPanel('J_scroll_chart');
+    },
+    //列表页
     initListPage: function(e, pageName, fromPage, param){
         //console.log(fromPage)
         navManager.headerWrap.show();
@@ -168,7 +210,14 @@ AppManager.prototype = {
                 }
             });
             pageManager.navTo('detail');
-        })
+        });
+        //滚动控制
+        /*var $list = $('#J_scroll_list');
+        if(!$list.data('scroller')){
+            var myScroll = new iScroll('J_scroll_list', { scrollbarClass: 'myScrollbar'});
+            $list.data('scroller', myScroll);
+        }*/
+        this.scrollPanel('J_scroll_list');
         
     },
     initDetailPage: function(e, pageName, fromPage, param){
@@ -194,7 +243,14 @@ AppManager.prototype = {
                 }
             });
             pageManager.navTo('about');
-        })
+        });
+        //滚动控制
+        /*var $detail = $('#J_scroll_detail');
+        if(!$detail.data('scroller')){
+            var myScroll = new iScroll('J_scroll_detail', { scrollbarClass: 'myScrollbar'});
+            $detail.data('scroller', myScroll);
+        }*/
+        this.scrollPanel('J_scroll_detail');
         
     },
     initAboutPage: function(e, pageName, fromPage, param){
@@ -222,12 +278,19 @@ AppManager.prototype = {
                 });
                 return false;
             }
-            var p = pageManager.createPage('', '<p style="color: #fff;">这是个新页面</p>');
+            var html = new TemplateManager().load('tmpl');
+            var p = pageManager.createPage('', html);
             $this.attr('data-nav', p.name);
+            
             //动态创建动态方法
-            _this[_this.makeFun(p.name)] = function(){
-                alert(arguments[1]);
-                console.log(_this)
+            _this[_this.makeFun(p.name)] = function(e, pageName, fromPage, param){
+                //alert(arguments[1]);
+                //console.log(arguments)
+                p.$.attr('id', p.name);
+                _this.scrollPanel(p.name);
+                p.$.find('.container').css({
+                    backgroundColor: '#fff'
+                })
             }
             pageManager.navTo(p.name);
             navManager.render({
@@ -242,16 +305,3 @@ AppManager.prototype = {
 
 var appManager = new AppManager();
 appManager.init();
-
-//下一步，考虑page的智能化
-//定义一个页面
-//PAGE.list = function(){}
-/*
-document.on('page', function(e, pageName){
-    if(PAGE[pageName]){
-    console.log('奥嚎，功能还没写哦');
-    return;
-    }
-    PAGE[pageName]();
-})
-*/

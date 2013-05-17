@@ -71,6 +71,10 @@
           var $html = $('<section class="page" />');
           pageHtml && $html.html(pageHtml);
           $html.attr('data-page', name);
+          /*$html.attr({
+            'data-page': name,
+            'id': name
+          });*/
           var page = {
               name: name,
               $: $html

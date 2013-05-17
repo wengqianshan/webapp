@@ -4,7 +4,7 @@
 */
 (function(window) {
   var PageDetail = function(appManager, navManager, pageManager, historyManager){
-    console.log(appManager)
+    console.log(appManager, navManager)
   };
   PageDetail.prototype = {
     init: function(){

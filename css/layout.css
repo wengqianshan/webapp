@@ -143,15 +143,17 @@ ul{
 .tab-nav li.active a{
     color: #fff;
 }
-.tab-content{
+.tab-pane{
     display: none;
     box-sizing: border-box;
+}
+.page-detail .body .tab-pane{
     position: absolute;
     top: 41px;
     bottom: 0;
     width: 100%;
 }
-.tab-content.active{
+.tab-pane.active{
     display: block;
 }
 .page header{
@@ -420,3 +422,17 @@ dl,dt,dd{
 .page-about{
     color: #fff;
 }
+
+/*按钮*/
+.button{}
+.loading{
+    width: 50px;
+    height: 50px;
+    border: 1px solid #666;
+    border-radius: 10px;
+    background: #555;
+}
+.loading.fixed{
+
+}
+

@@ -12,8 +12,10 @@ AppManager.prototype = {
         pageManager.init();
         navManager.init();
 
-
         var $document = $(document);
+        $document.on('touchmove', function(e){
+            e.preventDefault();
+        })
         //回退事件
         $document.on('history.back', function(e, obj){
             navManager.render(obj.header, obj.footer);
@@ -93,7 +95,7 @@ AppManager.prototype = {
     //图表页
     initStatusPage: function(){
         //滚动控制
-        this.scrollPanel('J_scroll_chart');
+        //this.scrollPanel('J_scroll_chart');
     },
     //列表页
     initListPage: function(e, pageName, fromPage, param){
@@ -148,7 +150,6 @@ AppManager.prototype = {
             }
         };
         navManager.render(header);
-
         navManager.footerWrap.find('li').removeClass('active').eq(3).addClass('active');
         $('.list-group li').off().on('click', function(){
             historyManager.add({
@@ -160,9 +161,19 @@ AppManager.prototype = {
             pageManager.navTo('about');
         });
         //滚动控制
+        this.scrollPanel('J_scroll_chart');
         this.scrollPanel('J_scroll_detail');
-        var pageDetail =new PageDetail(this);
+        var pageDetail =new PageDetail(this, navManager, pageManager, historyManager);
         pageDetail.init();
+        $('.tab-nav li').on('click', function(e){
+            e.preventDefault();
+            var $this = $(this);
+            var tabContent = $this.parent().parent().next().find('.tab-content');
+            var index = $('.tab-nav li').index($this);
+            console.log(index)
+            $('.tab-nav li').removeClass('active').eq(index).addClass('active');
+            tabContent.find('.tab-pane').removeClass('active').eq(index).addClass('active');
+        })
         
     },
     initAboutPage: function(e, pageName, fromPage, param){
@@ -173,6 +184,7 @@ AppManager.prototype = {
             }
         };
         navManager.render(header);
+        navManager.footerWrap.find('li').removeClass('active').eq(4).addClass('active');
         $('#J_create').off().on('click', function(){
             historyManager.add({
                 header: header,
@@ -185,7 +197,7 @@ AppManager.prototype = {
                 pageManager.navTo($this.attr('data-nav'));
                 navManager.render({
                     title: {
-                        text: '新页面'
+                        text: 'UI规范'
                     }
                 });
                 return false;
@@ -199,15 +211,18 @@ AppManager.prototype = {
                 //alert(arguments[1]);
                 //console.log(arguments)
                 p.$.attr('id', p.name);
-                _this.scrollPanel(p.name);
-                p.$.find('.container').css({
-                    backgroundColor: '#fff'
+                p.$.css({
+                    backgroundColor: '#fff',
+
+                }).find('.scroller').css({
+                    paddingBottom: '50px'
                 })
+                _this.scrollPanel(p.name);
             }
             pageManager.navTo(p.name);
             navManager.render({
                 title: {
-                    text: '新页面'
+                    text: 'UI规范'
                 }
             });
             //pageManager.stretch();

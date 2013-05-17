@@ -1,68 +1,3 @@
-//图表
-var chart1; // globally available
-$(document).ready(function() {
-  chart1 = new Highcharts.Chart({
-     title: {
-        text: ''
-     },
-     colors: ['#f80', '#fff', '#0ff'],
-     chart: {
-        renderTo: 'canvas',
-        type: 'spline',
-        backgroundColor: 'transparent',
-        borderColor: '#fff'
-     },
-     legend: {
-        enabled: true,
-        verticalAlign: 'top',
-        borderWidth: 0,
-        style: {
-            align: 'right'
-        },
-        itemStyle: {
-            color: '#fff'
-        },
-        itemHoverStyle: {
-
-        },
-        itemHiddenStyle: {
-
-        }
-     },
-     xAxis: {
-        categories: ['15:00', '16:00', '17:00', '18:00', '19:00'],
-        lineColor: '#f80',
-        tickColor: '#ff8800',
-        labels: {
-            style: {
-                color: '#fff'
-            }
-        }
-     },
-     yAxis: {
-        title: {
-            text: ''
-        },
-        gridLineColor: '#777',
-        max: 100,
-        min: 0,
-        tickInterval: 50,
-        labels: {
-            style: {
-                color: '#fff'
-            }
-        }
-     },
-     series: [{
-        name: 'CPU使用率',
-        data: [25, 33, 60, 55, 12] // predefined JavaScript array
-     }],
-     credits: {
-        enabled: false
-     }
-  });
-
-});
 //实例初始化
 window.pageManager = new PageManager();
 window.historyManager = new HistoryManager();
@@ -251,6 +186,8 @@ AppManager.prototype = {
             $detail.data('scroller', myScroll);
         }*/
         this.scrollPanel('J_scroll_detail');
+        var pageDetail =new PageDetail(this);
+        pageDetail.init();
         
     },
     initAboutPage: function(e, pageName, fromPage, param){

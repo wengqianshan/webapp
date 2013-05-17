@@ -28,7 +28,7 @@ AppManager.prototype = {
             var args = arguments;
             var _method = _this.makeFun(args[1]);
             if(!_this[_method]){
-                console.log('奥嚎，功能还没写哦');
+                console.log('额，方法还没定义哦:this.' + _method);
                 return;
             }
             _this[_method].apply(_this, Array.prototype.slice.call(arguments));
@@ -88,26 +88,11 @@ AppManager.prototype = {
         });
 
         //滚动控制
-        /*var $loginPanel = $('#J_page_login');
-        if(!$loginPanel.data('scroller')){
-            var myScroll = new iScroll('J_page_login', { scrollbarClass: 'myScrollbar', onBeforeScrollStart:function(e){
-                var target = e.target;
-                while (target.nodeType != 1) target = target.parentNode;
-                if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
-                  e.preventDefault();
-            }});
-            $loginPanel.data('scroller', myScroll);
-        }*/
         this.scrollPanel('J_page_login');
     },
     //图表页
     initStatusPage: function(){
         //滚动控制
-        /*var $chart = $('#J_scroll_chart');
-        if(!$chart.data('scroller')){
-            var myScroll = new iScroll('J_scroll_chart', { scrollbarClass: 'myScrollbar'});
-            $chart.data('scroller', myScroll);
-        }*/
         this.scrollPanel('J_scroll_chart');
     },
     //列表页
@@ -147,11 +132,6 @@ AppManager.prototype = {
             pageManager.navTo('detail');
         });
         //滚动控制
-        /*var $list = $('#J_scroll_list');
-        if(!$list.data('scroller')){
-            var myScroll = new iScroll('J_scroll_list', { scrollbarClass: 'myScrollbar'});
-            $list.data('scroller', myScroll);
-        }*/
         this.scrollPanel('J_scroll_list');
         
     },
@@ -180,11 +160,6 @@ AppManager.prototype = {
             pageManager.navTo('about');
         });
         //滚动控制
-        /*var $detail = $('#J_scroll_detail');
-        if(!$detail.data('scroller')){
-            var myScroll = new iScroll('J_scroll_detail', { scrollbarClass: 'myScrollbar'});
-            $detail.data('scroller', myScroll);
-        }*/
         this.scrollPanel('J_scroll_detail');
         var pageDetail =new PageDetail(this);
         pageDetail.init();

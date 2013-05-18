@@ -170,7 +170,6 @@ AppManager.prototype = {
             var $this = $(this);
             var tabContent = $this.parent().parent().next().find('.tab-content');
             var index = $('.tab-nav li').index($this);
-            console.log(index)
             $('.tab-nav li').removeClass('active').eq(index).addClass('active');
             tabContent.find('.tab-pane').removeClass('active').eq(index).addClass('active').data('scroller').refresh();
 

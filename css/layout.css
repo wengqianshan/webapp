@@ -53,9 +53,10 @@ ul{
 }
 .header .title{
     font-size: 1.5em;
-    margin: 0;
-    display: inline-block;
     font-weight: normal;
+    margin: 0;
+    text-align: center;
+    width: 100%;
 }
 .header-left{
     float: left;

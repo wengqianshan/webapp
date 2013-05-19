@@ -108,7 +108,7 @@
           pageObj.$.addClass('stretch-header');
       },
       //布局控制：占满底部
-      stretchFooter: function(){
+      stretchFooter: function(page){
           var pageObj = page || this.getActivePage();
           pageObj.$.addClass('stretch-footer');
       },

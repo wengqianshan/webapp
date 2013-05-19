@@ -52,7 +52,7 @@ AppManager.prototype = {
     makeFun: function(pageName){
         var upName = pageName.replace(/\b\w+\b/g, function(word){
             //console.log(word)
-            return word.substring(0,1).toUpperCase()+word.substring(1);
+            return word.substring(0,1).toUpperCase() + word.substring(1);
         });
         return 'init' + upName + 'Page';
     },
@@ -234,39 +234,41 @@ AppManager.prototype = {
                     name: 'about'
                 }
             });
+            var newHeader = {
+                title: {
+                    text: 'UI规范'
+                }
+            };
             var $this= $(this);
             if($this.attr('data-nav')){
                 pageManager.navTo($this.attr('data-nav'));
-                navManager.render({
-                    title: {
-                        text: 'UI规范'
-                    }
-                });
+                navManager.render(newHeader);
+                navManager.footerWrap.hide();
+                pageManager.stretchFooter();
                 return false;
             }
             var html = new TemplateManager().load('tmpl');
             var p = pageManager.createPage('', html);
             $this.attr('data-nav', p.name);
             
-            //动态创建动态方法
+            //动态创建动态方法如: initXxxPage
             _this[_this.makeFun(p.name)] = function(e, pageName, fromPage, param){
                 //alert(arguments[1]);
                 //console.log(arguments)
+                navManager.render(newHeader);
+                navManager.footerWrap.hide();
                 p.$.attr('id', p.name);
                 p.$.css({
                     backgroundColor: '#fff',
 
                 }).find('.scroller').css({
                     paddingBottom: '50px'
-                })
+                });
+                pageManager.stretchFooter(p);
                 _this.scrollPanel(p.name);
-            }
+            };
             pageManager.navTo(p.name);
-            navManager.render({
-                title: {
-                    text: 'UI规范'
-                }
-            });
+            
             //pageManager.stretch();
         })
     }

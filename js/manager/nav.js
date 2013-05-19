@@ -47,11 +47,7 @@
           footer.fn.call(null, $footerHtml);
       },
       createButton: function(obj){
-          var button = {
-              back: '<a href="#" class="btn-back">返回</a>',
-              refresh: '<a href="#" class="btn-refresh">刷新</a>'
-          }
-          var tag = $(button[obj.type]);
+          var tag = $(CONFIG.button[obj.type]);
           tag.html(obj.text);
           obj.fn && obj.fn.call($(tag));
           return tag;

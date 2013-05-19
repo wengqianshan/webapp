@@ -56,6 +56,9 @@ AppManager.prototype = {
         });
         return 'init' + upName + 'Page';
     },
+    initPageFn: function(page, fn){
+        this[this.makeFun(page.name)] = fn;
+    },
     //滚动一个布局
     scrollPanel: function(id, option){
         var defaultOption = {
@@ -252,7 +255,7 @@ AppManager.prototype = {
             $this.attr('data-nav', p.name);
             
             //动态创建动态方法如: initXxxPage
-            _this[_this.makeFun(p.name)] = function(e, pageName, fromPage, param){
+            _this.initPageFn(p, function(e, pageName, fromPage, param){
                 //alert(arguments[1]);
                 //console.log(arguments)
                 navManager.render(newHeader);
@@ -266,7 +269,22 @@ AppManager.prototype = {
                 });
                 pageManager.stretchFooter(p);
                 _this.scrollPanel(p.name);
-            };
+            });
+            /*_this[_this.makeFun(p.name)] = function(e, pageName, fromPage, param){
+                //alert(arguments[1]);
+                //console.log(arguments)
+                navManager.render(newHeader);
+                navManager.footerWrap.hide();
+                p.$.attr('id', p.name);
+                p.$.css({
+                    backgroundColor: '#fff',
+
+                }).find('.scroller').css({
+                    paddingBottom: '50px'
+                });
+                pageManager.stretchFooter(p);
+                _this.scrollPanel(p.name);
+            };*/
             pageManager.navTo(p.name);
             
             //pageManager.stretch();

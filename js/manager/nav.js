@@ -7,8 +7,6 @@
       var _this = this;
       this.headerWrap = $('.header');
       this.footerWrap = $('.footer');
-      this.header = CONFIG.header;
-      this.footer = CONFIG.footer;
   };
 
   NavManager.prototype = {
@@ -16,8 +14,8 @@
           this.render();
       },
       render: function(header, footer){
-          var header = $.extend(this.header, header);
-          var footer = $.extend(this.footer, footer);
+          var header = $.extend(true, {}, CONFIG.header, header);
+          var footer = $.extend(true, {}, CONFIG.footer, footer);
           this.renderHeader(header);
           this.renderFooter(footer);
       },
@@ -31,14 +29,18 @@
           headerLeft.empty();
           headerRight.empty();
           this.headerWrap.find('.title').html(title.text);
-          $(left.actions).each(function(i, item){
-              var button = _this.createButton(item);
-              headerLeft.append(button);
-          });
-          $(right.actions).each(function(i, item){
-              var button = _this.createButton(item);
-              headerRight.append(button);
-          });
+          if(left){
+            $(left.actions).each(function(i, item){
+                var button = _this.createButton(item);
+                headerLeft.append(button);
+            });
+          }
+          if(right){
+            $(right.actions).each(function(i, item){
+                var button = _this.createButton(item);
+                headerRight.append(button);
+            });
+          }
 
       },
       renderFooter: function(footer){
@@ -47,8 +49,11 @@
           footer.fn.call(null, $footerHtml);
       },
       createButton: function(obj){
+          if(!obj || !$.isPlainObject(obj)){
+            return;
+          }
           var tag = $(CONFIG.button[obj.type]);
-          tag.html(obj.text);
+          tag.html(obj.text).addClass(obj.cls);
           obj.fn && obj.fn.call($(tag));
           return tag;
       }

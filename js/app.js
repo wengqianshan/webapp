@@ -81,16 +81,58 @@ AppManager.prototype = {
         navManager.footerWrap.hide();
         pageManager.stretch();
         $('#J_btn_login').off().on('click', function(){
-            historyManager.add({
+            /*historyManager.add({
                 page: {
                     name: 'login'
                 }
-            });
-            pageManager.navTo('list');
+            });*/
+            pageManager.navTo('home');
         });
 
         //滚动控制
         this.scrollPanel('J_page_login');
+    },
+    //Home
+    initHomePage: function(){
+        navManager.headerWrap.show();
+        var header = {
+            title: {
+                text: 'Home Page'
+            },
+            left: '',
+            right: {
+                actions: [
+                    {
+                        type: 'normal',
+                        text: '登出',
+                        fn: function(){
+                            this.on('touchstart click', function(e){
+                                e.preventDefault();
+                                pageManager.navTo('login');
+                            })
+                        }
+                    }
+                ]
+            }
+        };
+        historyManager.add({
+            header: header,
+            page: {
+                name: 'home'
+            }
+        });
+
+        navManager.render(header);
+        navManager.footerWrap.show();
+        navManager.footerWrap.find('li').removeClass('active').eq(0).addClass('active');
+        $('#J_home_list li').off().on('click', function(e){
+            e.preventDefault();
+            var $this = $(this);
+            var name = $this.attr('data-nav');
+            pageManager.navTo(name);
+        });
+        //滚动控制
+        this.scrollPanel('J_scroll_home');
     },
     //图表页
     initStatusPage: function(){

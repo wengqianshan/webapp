@@ -14,8 +14,9 @@
 
       },
       add: function(obj){
-          var header = $.extend(CONFIG.header, obj.header);
-          var footer = $.extend(CONFIG.footer, obj.footer);
+          var header = $.extend(true, {}, CONFIG.header, obj.header);
+          var footer = $.extend(true, {}, CONFIG.footer, obj.footer);
+          //TODO: 检查最后一个是否和要添加到重复,如果重复就不再添加
           this.historys.push({
               header: header,
               footer: footer,

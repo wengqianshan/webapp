@@ -137,11 +137,6 @@ AppManager.prototype = {
         //滚动控制
         this.scrollPanel('J_scroll_home');
     },
-    //图表页
-    initStatusPage: function(){
-        //滚动控制
-        //this.scrollPanel('J_scroll_chart');
-    },
     //列表页
     initListPage: function(e, pageName, fromPage, param){
         //console.log(fromPage)
@@ -195,7 +190,7 @@ AppManager.prototype = {
             }
         };
         navManager.render(header);
-        navManager.footerWrap.find('li').removeClass('active').eq(3).addClass('active');
+        navManager.footerWrap.find('li').removeClass('active').eq(2).addClass('active');
         $('.list-group li').off().on('click', function(){
             historyManager.add({
                 header: header,
@@ -229,7 +224,7 @@ AppManager.prototype = {
             }
         };
         navManager.render(header);
-        navManager.footerWrap.find('li').removeClass('active').eq(4).addClass('active');
+        navManager.footerWrap.find('li').removeClass('active').eq(3).addClass('active');
         $('#J_create').off().on('click', function(){
             historyManager.add({
                 header: header,

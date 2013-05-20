@@ -14,6 +14,12 @@
 
       },
       add: function(obj){
+          var last = this.historys.length > 0 ? this.historys.slice(-1)[0] : {};
+          //console.log(this.historys, last, obj)
+          if(this.historys.length > 0 && (last.page.name === obj.page.name)){
+            console.log('页面重复，不需要添加到历史记录: ' + obj.page.name)
+            return;
+          }
           var header = $.extend(true, {}, CONFIG.header, obj.header);
           var footer = $.extend(true, {}, CONFIG.footer, obj.footer);
           //TODO: 检查最后一个是否和要添加到重复,如果重复就不再添加

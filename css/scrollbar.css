@@ -42,7 +42,6 @@
 .myScrollbarV > div {
 	position:absolute;
 	z-index:100;
-
 	/* The following is probably what you want to customize */
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;

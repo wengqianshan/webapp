@@ -79,7 +79,7 @@ AppManager.prototype = {
         $panel.data('scroller', myScroll);
     },
     initLoginPage: function(e, pageName, fromPage, param){
-        console.log(e, pageName, fromPage, param, 'lll')
+        //console.log(e, pageName, fromPage, param, 'lll')
         navManager.headerWrap.hide();
         navManager.footerWrap.hide();
         pageManager.stretch();

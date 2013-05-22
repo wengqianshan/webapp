@@ -264,22 +264,10 @@ AppManager.prototype = {
                 });
                 pageManager.stretchFooter(p);
                 _this.scrollPanel(p.name);
+                var spinner = new Spinner().spin();
+                console.log(spinner)
+                $('.icon-loading').append(spinner.el);
             });
-            /*_this[_this.makeFun(p.name)] = function(e, pageName, fromPage, param){
-                //alert(arguments[1]);
-                //console.log(arguments)
-                navManager.render(newHeader);
-                navManager.footerWrap.hide();
-                p.$.attr('id', p.name);
-                p.$.css({
-                    backgroundColor: '#fff',
-
-                }).find('.scroller').css({
-                    paddingBottom: '50px'
-                });
-                pageManager.stretchFooter(p);
-                _this.scrollPanel(p.name);
-            };*/
             pageManager.navTo(p.name);
             
             //pageManager.stretch();

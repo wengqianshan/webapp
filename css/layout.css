@@ -456,3 +456,84 @@ a.nav-button:active{
 .page-home h2{
     color: #fff;
 }
+.d-box{
+    padding: 50px 30px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+.icon-loading{
+    display: inline-block;
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+}
+
+/*modal*/
+.modal{
+    margin: 0 10%;
+    border: 2px solid #e9eaeb;
+    background: rgba(11,27,68,0.8) url(../img/dialoggloss.png);
+    background-size: 100% auto, auto;
+    background-repeat: no-repeat;
+    box-shadow: 0px 4px 9px rgba(0,0,0,0.8),    0px 1px 2px rgba(0,0,0,1.0);
+    border-radius: 12px;
+    box-sizing: content-box;
+    padding: 5px;
+    text-align: center;
+
+}
+.modal-header{
+    padding-top: 10px;
+    color: #fff;
+    text-shadow: 0px -1px rgba(0,0,0,0.8);
+
+}
+.modal-header h3{
+    margin: 0;
+}
+.modal-body{
+    padding-top: 6px;
+    padding-bottom: 8px;
+    color: #fff;
+    text-shadow: 0px -1px rgba(0,0,0,0.8);
+    text-align: center;
+}
+.modal-body p{
+    margin: 0;
+}
+.modal-footer{
+    overflow: hidden;
+    display: -webkit-box;
+}
+.button,
+a.button{
+    border: 1px solid rgba(19,30,58,0.9);
+    box-shadow: 0px 1px 0px rgba(255,255,255,0.2);
+    text-shadow: 0px -1px rgba(0,0,0,0.8);
+    color: #fff;
+    font-family: 'HelveticaNeue-Bold', 'HelveticaNeue', Helvetia, Arial;
+    font-size: 18px;
+    width: 134px;
+    height: 42px;
+    display: block;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding-top: 8px;
+}
+.modal-footer .button{
+    margin-right: 5px;
+    -webkit-box-flex: 1;
+}
+.modal-footer .button.cancel{
+    background-image: -webkit-linear-gradient(bottom, rgb(32,43,74) 26%, rgb(19,31,64) 50%, rgb(48,58,88) 50%, rgb(113,121,140) 91%);
+}
+.modal-footer .button.ok{
+    background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(93,103,127)), color-stop(0.5, rgb(77,87,114)), color-stop(0.5, rgb(104,113,137)), color-stop(0.91, rgb(174,178,190)) );
+}
+.modal-footer .button:last-child{
+    margin-right: 0;
+}
+.modal-footer .button:active{
+    background-image: -webkit-linear-gradient(bottom, rgba(25,35,63,0.8) 0%, rgba(17,23,38,0.8) 50%, rgba(56,62,77,0.8) 50%, rgba(114,118,129,0.8) 91%);
+}

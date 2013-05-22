@@ -264,9 +264,17 @@ AppManager.prototype = {
                 });
                 pageManager.stretchFooter(p);
                 _this.scrollPanel(p.name);
-                //
+                //fun
+                $('.J_alert').off().on('click', function(e){
+                    e.preventDefault();
+                    alert('你点击了确定')
+                });
+                $('.J_back').off().on('click', function(e){
+                    e.preventDefault();
+                    historyManager.back();
+                })
 
-
+                //Loading初始化
                 var opts = {
                     lines: 12, // The number of lines to draw
                     length: 4, // The length of each line
@@ -282,12 +290,12 @@ AppManager.prototype = {
                     top: 'auto', // Top position relative to parent in px
                     left: 'auto' // Left position relative to parent in px
                 };
-                var target = $('.icon-loading')[0];
-                var spinner = new Spinner(opts).spin(target);
-
-                /*var spinner = new Spinner().spin();
-                console.log(spinner)
-                $('.icon-loading').append(spinner.el);*/
+                $('.icon-loading').each(function(){
+                    if($(this).find('.spinner').length > 0){
+                        return;
+                    }
+                    new Spinner(opts).spin(this);
+                })
             });
             pageManager.navTo(p.name);
             

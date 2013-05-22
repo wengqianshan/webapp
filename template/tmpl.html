@@ -1,39 +1,74 @@
 <div class="scroller">
-  <div class="container">
-      <h1>UI规范</h1>
-      <p>用TemplateManager加载.</p>
-      <p>可专门用来存放模板</p>
-      <ul>
-          <li>a mistyped address</li>
-          <li>an out-of-date link</li>
-      </ul>
-  </div>
-
-  //dialog
+  <h1>UI规范</h1>
+  <h3>正常列表</h3>
+  <ul class="list-view">
+    <li class="clearfix">
+        <span class="l-name">服务器</span>
+        <span class="l-icon"><i class="icon icon-yd-safe"></i></span>
+        <span class="l-status">运行中</span>
+    </li>
+    <li class="clearfix">
+        <span class="l-name">服务器</span>
+        <span class="l-icon"><i class="icon icon-yd-danger"></i></span>
+        <span class="l-status">即将到期</span>
+    </li>
+  </ul>
+  <h3>分组列表</h3>
+  <ul class="list-group">
+      <li><a class="l-name" href="#">服务器状态：已停止</a></li>
+      <li><a href="#">下辖云磁盘：5个</a></li>
+      <li><a href="#">自动释放时间：每周三00:00</a></li>
+  </ul>
+  <ul class="list-group">
+      <li>
+          <a href="#">关于我们</a>
+      </li>
+  </ul>
+  <h3>弹窗正常状态</h3>
   <div class="modal">
     <div class="modal-header">
-      <h3>友情提示</h3>
+      <h3>小山提示</h3>
     </div>
     <div class="modal-body">
       <p>执行此操作会引起未知后果, 是否继续?</p>
     </div>
     <div class="modal-footer">
       <a href="#" class="button cancel">取消</a>
-      <a href="#" class="button ok">确定</a>
+      <a href="#" class="button ok J_alert">确定</a>
+    </div>
+  </div>
+  <h3>弹窗只有一个按钮</h3>
+  <div class="modal">
+    <div class="modal-header">
+      <h3>小山提示</h3>
+    </div>
+    <div class="modal-body">
+      <p>点我可以回到上一页喔, 是否继续?</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="button ok J_back">确定</a>
+    </div>
+  </div>
+  <h3>弹窗loading状态</h3>
+  <div class="modal">
+    <div class="modal-header">
+      <h3>正在重启</h3>
+    </div>
+    <div class="modal-body">
+      <p><i class="icon-loading"></i></p>
     </div>
   </div>
 
-  //loading
-  <div id="spin"></div>
+  <h3>Loading</h3>
   <div class="d-box">
     <i class="icon-loading"></i>加载中...
   </div>
-  //tip
+  <h3>提示</h3>
   <div class="tip">
     这里是个提示
   </div>
 
-  //page
+  <h3>单页面展示</h3>
 
 
 </div>

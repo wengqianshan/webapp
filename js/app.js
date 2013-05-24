@@ -19,7 +19,7 @@ AppManager.prototype = {
         //回退事件
         $document.on('history.back', function(e, obj){
             navManager.render(obj.header, obj.footer);
-            pageManager.navTo(obj.page.name)
+            pageManager.navTo(obj.page.name, {_back: true})
         });
         //添加历史事件
         $document.on('history.add', function(e, obj){

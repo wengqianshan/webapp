@@ -25,14 +25,23 @@
           var _this = this;
           var hasPage = false;
           var fromPage = this.activePage;
-          $('.page').removeClass('active');
+          console.log(fromPage)
+          //$('.page').removeClass('active');
+          if(fromPage){
+            if(param && param._back){
+              fromPage.$.removeClass('active').addClass('right');
+            }else{
+              fromPage.$.removeClass('active').addClass('left');
+            }
+          }
+          
           $(this.pages).each(function(i, item){
               var $ele = item.$,
                   name = item.name;
               if(name === pageName){
                   hasPage = true;
                   _this.activePage = item;
-                  $ele.addClass('active');
+                  $ele.removeClass('left right').addClass('active');
                   $(document).trigger('page', [pageName, fromPage, param]);//pagename, from, param
                   return false;
               }

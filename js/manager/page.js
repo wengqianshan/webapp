@@ -29,19 +29,27 @@
           //$('.page').removeClass('active');
           if(fromPage){
             if(param && param._back){
-              fromPage.$.removeClass('active').addClass('right');
+              fromPage.$.removeClass('active left right').addClass('right');
             }else{
-              fromPage.$.removeClass('active').addClass('left');
+              fromPage.$.removeClass('active left right').addClass('left');
             }
           }
-          
           $(this.pages).each(function(i, item){
               var $ele = item.$,
                   name = item.name;
               if(name === pageName){
                   hasPage = true;
                   _this.activePage = item;
-                  $ele.removeClass('left right').addClass('active');
+                  $ele.addClass('no-effic');
+                  $ele.removeClass('left right');
+                  if(param && param._back){
+                    $ele.addClass('left');
+                  }else{
+                    $ele.addClass('right');
+                  }
+                  setTimeout(function(){
+                    $ele.removeClass('no-effic').addClass('active');
+                  })
                   $(document).trigger('page', [pageName, fromPage, param]);//pagename, from, param
                   return false;
               }

@@ -191,7 +191,8 @@ AppManager.prototype = {
         };
         navManager.render(header);
         navManager.footerWrap.find('li').removeClass('active').eq(2).addClass('active');
-        $('.list-group li').off().on('click', function(){
+        $('.list-group li').off().on('click', function(e){
+            e.preventDefault();
             historyManager.add({
                 header: header,
                 page: {
@@ -264,6 +265,17 @@ AppManager.prototype = {
                 });
                 pageManager.stretchFooter(p);
                 _this.scrollPanel(p.name);
+                //
+                $('.list-group li').off().on('click', function(e){
+                    e.preventDefault();
+                    historyManager.add({
+                        header: newHeader,
+                        page: {
+                            name: pageName
+                        }
+                    });
+                    pageManager.navTo('about');
+                });
                 //fun
                 $('.J_alert').off().on('click', function(e){
                     e.preventDefault();

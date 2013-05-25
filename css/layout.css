@@ -62,7 +62,6 @@ ul{
     float: right;
 }
 .pages{
-
 }
 .page{
     width: 100%;
@@ -70,19 +69,27 @@ ul{
     top: 2.8em; 
     bottom: 2.7em; 
     left: 100%;
-    -webkit-transition: all .5s ease-out;
+    -webkit-transition: all .5s linear;
+    -webkit-backface-visibility:hidden;
 }
 .page.no-effic{
-    -webkit-transition: all 0s ease-out;
+    -webkit-transition-duration: 0s;
 }
 .page.right{
     left: 100%;
+    opacity: 0;
+    -webkit-transform:perspective(320px) rotateY(180deg);
 }
 .page.left{
     left: -100%;
+    opacity: 0;
+    -webkit-transform:perspective(320px) rotateY(-180deg);
 }
 .page.active{
     left: 0;
+    opacity: 1;
+    -webkit-transform:perspective(320px) rotateY(0deg);
+    z-index: 1;
 }
 .page.stretch{
     top: 0;

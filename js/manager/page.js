@@ -24,14 +24,18 @@
       navTo: function(pageName, param){
           var _this = this;
           var hasPage = false;
+          var param = param || {};
           var fromPage = this.activePage;
-          console.log(fromPage)
+          //console.log(fromPage)
           //$('.page').removeClass('active');
           if(fromPage){
             if(param && param._back){
-              fromPage.$.removeClass('active left right').addClass('right');
+              fromPage.$.removeClass('no-effect active left right').addClass('right');
             }else{
-              fromPage.$.removeClass('active left right').addClass('left');
+              fromPage.$.removeClass('no-effect active left right').addClass('left');
+            }
+            if(param._effect == -1){
+              fromPage.$.addClass('no-effect');
             }
           }
           $(this.pages).each(function(i, item){
@@ -40,7 +44,7 @@
               if(name === pageName){
                   hasPage = true;
                   _this.activePage = item;
-                  $ele.addClass('no-effic');
+                  $ele.addClass('no-effect');
                   $ele.removeClass('left right');
                   if(param && param._back){
                     $ele.addClass('left');
@@ -48,7 +52,10 @@
                     $ele.addClass('right');
                   }
                   setTimeout(function(){
-                    $ele.removeClass('no-effic').removeClass('left right').addClass('active');
+                    if(param._effect !== -1){
+                      $ele.removeClass('no-effect');
+                    }
+                    $ele.removeClass('left right').addClass('active');
                   })
                   $(document).trigger('page', [pageName, fromPage, param]);//pagename, from, param
                   return false;

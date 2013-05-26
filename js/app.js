@@ -36,7 +36,7 @@ AppManager.prototype = {
             _this[_method].apply(_this, Array.prototype.slice.call(arguments));
         })
         //默认使用登录页
-        pageManager.navTo('login');
+        pageManager.navTo('login', {_effect: -1});
 
         //动态创建页面例子
         var p = pageManager.createPage('', 'Hello UED');

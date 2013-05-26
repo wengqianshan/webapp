@@ -74,7 +74,7 @@ ul{
     opacity: 0;
     
 }
-.page.no-effic{
+.page.no-effect{
     -webkit-transition-duration: 0s;
 }
 .page.right{

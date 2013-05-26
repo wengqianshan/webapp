@@ -67,28 +67,23 @@ ul{
     width: 100%;
     position: absolute; 
     top: 2.8em; 
-    bottom: 2.7em; 
-    left: 100%;
-    -webkit-transition: all .5s linear;
-    -webkit-backface-visibility:hidden;
+    bottom: 2.7em;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: all .4s linear;
+    -webkit-transform: translateX(100%);
+    -webkit-transform-style:preserve-3d;
 }
 .page.no-effic{
     -webkit-transition-duration: 0s;
 }
 .page.right{
-    left: 100%;
-    opacity: 0;
-    -webkit-transform:perspective(320px) rotateY(180deg);
+    -webkit-transform: translateX(100%);
 }
 .page.left{
-    left: -100%;
-    opacity: 0;
-    -webkit-transform:perspective(320px) rotateY(-180deg);
+    -webkit-transform: translateX(-100%);
 }
 .page.active{
-    left: 0;
-    opacity: 1;
-    -webkit-transform:perspective(320px) rotateY(0deg);
+    -webkit-transform: translateX(0);
     z-index: 1;
 }
 .page.stretch{

@@ -48,7 +48,7 @@
                     $ele.addClass('right');
                   }
                   setTimeout(function(){
-                    $ele.removeClass('no-effic').addClass('active');
+                    $ele.removeClass('no-effic').removeClass('left right').addClass('active');
                   })
                   $(document).trigger('page', [pageName, fromPage, param]);//pagename, from, param
                   return false;

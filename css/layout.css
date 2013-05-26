@@ -69,9 +69,9 @@ ul{
     top: 2.8em; 
     bottom: 2.7em;
     -webkit-backface-visibility: hidden;
-    -webkit-transition: all .4s linear;
+    -webkit-transition: -webkit-transform .6s;
     -webkit-transform: translateX(100%);
-    -webkit-transform-style:preserve-3d;
+    
 }
 .page.no-effic{
     -webkit-transition-duration: 0s;

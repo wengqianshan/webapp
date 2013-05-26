@@ -78,13 +78,13 @@ ul{
     -webkit-transition-duration: 0s;
 }
 .page.right{
-    -webkit-transform: translateX(100%);
+    -webkit-transform: translateX(100%) rotateX(90deg);
 }
 .page.left{
-    -webkit-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%) rotateX(-90deg);
 }
 .page.active{
-    -webkit-transform: translateX(0);
+    -webkit-transform: translateX(0) rotateX(0deg);
     z-index: 1;
     opacity: 1;
 

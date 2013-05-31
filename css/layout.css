@@ -2,9 +2,16 @@ body{
     font-family: 'Microsoft Yahei', sans-serif;
     width: 100%;
     height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     background-color: #333;
     background-size: 100%;
-    background-attachment: fixed;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    background-image: url(../img/bg.jpg?4);
+    background-repeat: no-repeat;
 }
 html,body{
     overflow: hidden;
@@ -36,17 +43,18 @@ ul{
 /*layout*/
 .header{
     background-color: rgba(0, 0, 0, .3);
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #222;
     color: #eee;
     padding: .4em;
     text-align: center;
     text-shadow: 1px 1px 2px rgba(20, 20, 20 ,8);
     height: 2em;
     line-height: 2em;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, .8);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .8);
     position: relative;
     z-index: 10;
     display: none;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#3f3f3f), color-stop(50%, #353535), to(#2b2b2b));
 }
 .header .title{
     font-size: 1.5em;
@@ -54,6 +62,12 @@ ul{
     margin: 0;
     text-align: center;
     width: 100%;
+    height: 100%;
+    line-height: 1.8;
+    position: absolute;
+    left: 0;
+    top:0;
+    z-index: -1;
 }
 .header-left{
     float: left;
@@ -104,7 +118,7 @@ ul{
     bottom: 0px;
     width: 100%;
     background-color: #222;
-    box-shadow: 0 -1px 10px rgba(0, 0, 0, .9);
+    box-shadow: 0 -1px 3px -2px rgba(0, 0, 0, .9);
     display: none;
     z-index: 1000;
 }
@@ -113,8 +127,7 @@ ul{
     padding: 0;
     background-color: #393939;
     background-image: -webkit-linear-gradient(top, #393939 0, #2b2b2b 100%);
-    background-image: linear-gradient(to bottom, #393939 0, #2b2b2b 100%);
-    border-top: 1px solid #000;
+    border-top: 1px solid #222;
     border-bottom-width: 0;
     box-shadow: inset 0 1px 1px -1px rgba(255, 255, 255, .6);
     box-sizing: border-box;
@@ -134,6 +147,8 @@ ul{
     text-align: center;
     box-sizing: border-box;
     -webkit-box-flex: 1;
+
+
 }
 .footer nav ul li.active,
 .footer nav ul li:active{
@@ -146,7 +161,9 @@ ul{
     color: #666;
 }
 .footer nav ul li.active a,
-.footer nav ul li:active a{
+.footer nav ul li:active a,
+.footer nav ul li a:hover,
+.footer nav ul li a:active{
     color: #fff;
     box-shadow: inset 0 0 20px rgba(0, 0, 0, .5);
 }

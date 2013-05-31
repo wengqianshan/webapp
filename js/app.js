@@ -14,7 +14,6 @@ AppManager.prototype = {
         var _this = this;
         pageManager.init();
         navManager.init();
-
         var $document = $(document);
         $document.on('touchmove', function(e){
             e.preventDefault();
@@ -105,7 +104,7 @@ AppManager.prototype = {
             title: {
                 text: 'Home Page'
             },
-            left: '',
+            left: {},
             right: {
                 actions: [
                     {
@@ -127,7 +126,6 @@ AppManager.prototype = {
                 name: 'home'
             }
         });
-
         navManager.render(header);
         navManager.footerWrap.show();
         navManager.footerWrap.find('li').removeClass('active').eq(0).addClass('active');
@@ -188,9 +186,7 @@ AppManager.prototype = {
             title: {
                 text: '服务器详情'
             },
-            right: {
-                actions: []
-            }
+            right: {}
         };
         navManager.render(header);
         navManager.footerWrap.find('li').removeClass('active').eq(2).addClass('active');
@@ -225,7 +221,8 @@ AppManager.prototype = {
         var header = {
             title: {
                 text: '关于我们'
-            }
+            },
+            right: {}
         };
         navManager.render(header);
         navManager.footerWrap.find('li').removeClass('active').eq(3).addClass('active');
@@ -239,6 +236,40 @@ AppManager.prototype = {
             var newHeader = {
                 title: {
                     text: 'UI规范'
+                },
+                right: {
+                    actions: [
+                        {
+                            text: "设置",
+                            cls: '',
+                            fn: function(){
+                                $(this).on('click', function(e){
+                                    e.preventDefault();
+                                    alert($(this).html())
+                                })
+                            }
+                        },
+                        {
+                            text: "设置1",
+                            cls: '',
+                            fn: function(){
+                                $(this).on('click', function(e){
+                                    e.preventDefault();
+                                    alert($(this).html())
+                                })
+                            }
+                        },
+                        {
+                            text: "设置2",
+                            cls: '',
+                            fn: function(){
+                                $(this).on('click', function(e){
+                                    e.preventDefault();
+                                    alert($(this).html())
+                                })
+                            }
+                        }
+                    ]
                 }
             };
             var $this= $(this);
@@ -261,7 +292,8 @@ AppManager.prototype = {
                 navManager.footerWrap.hide();
                 p.$.attr('id', p.name);
                 p.$.css({
-                    backgroundColor: '#fff',
+                    //backgroundColor: '#fff',
+                    color: '#fff'
 
                 }).find('.scroller').css({
                     paddingBottom: '50px'

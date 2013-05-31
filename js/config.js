@@ -39,7 +39,7 @@
     footer: {
             html: template.render('J_tmpl_footer'),
             fn: function($html){
-                $html.find('li').on('click', function(e){
+                $html.find('li').on('touchstart click', function(e){
                     e.preventDefault();
                     var $this = $(this);
                     $this.addClass('active').siblings().removeClass('active');

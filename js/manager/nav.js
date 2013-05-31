@@ -13,9 +13,26 @@
       init: function(){
           this.render();
       },
-      render: function(header, footer){
-          var header = $.extend(true, {}, CONFIG.header, header);
-          var footer = $.extend(true, {}, CONFIG.footer, footer);
+      render: function(headerObj, footerObj){
+          var header = footer = {};
+          if(headerObj){
+            for(var i in CONFIG.header){
+              if(!headerObj[i]){
+                header[i] = CONFIG.header[i];
+              }else{
+                header[i] = headerObj[i];
+              }
+            }
+          }else{
+            header = CONFIG.header;
+          }
+          if(footerObj){
+            footer = footerObj;
+          }else{
+            footer = CONFIG.footer;
+          }
+          //var header = $.extend(true, {}, CONFIG.header, header);
+          //var footer = $.extend(true, {}, CONFIG.footer, footer);
           this.renderHeader(header);
           this.renderFooter(footer);
       },
@@ -45,14 +62,14 @@
       },
       renderFooter: function(footer){
           var $footerHtml = $(footer.html);
-          this.footerWrap.empty().append($footerHtml).show();
+          this.footerWrap.empty().html($footerHtml).show();
           footer.fn.call(null, $footerHtml);
       },
       createButton: function(obj){
           if(!obj || !$.isPlainObject(obj)){
             return;
           }
-          var tag = $(CONFIG.button[obj.type]);
+          var tag = $(CONFIG.button[obj.type || 'normal']);
           tag.html(obj.text).addClass(obj.cls);
           obj.fn && obj.fn.call($(tag));
           return tag;

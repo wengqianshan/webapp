@@ -5,8 +5,7 @@ window.navManager = new NavManager();
 //应用管理======================================================
 var isTouch = 'ontouchstart' in window;
 var events = (isTouch) ? {start: 'touchstart', move: 'touchmove', end: 'touchend'} : {start: 'mousedown', move: 'mousemove', end: 'mouseup'};
-
-console.log(isTouch, events)
+console.log(isTouch)
 var AppManager = function(){
 
 };
@@ -87,7 +86,7 @@ AppManager.prototype = {
         navManager.headerWrap.hide();
         navManager.footerWrap.hide();
         pageManager.stretch();
-        $('#J_btn_login').off().on(events.end, function(){
+        $('#J_btn_login').off().on('click', function(){
             /*historyManager.add({
                 page: {
                     name: 'login'
@@ -113,7 +112,7 @@ AppManager.prototype = {
                         type: 'normal',
                         text: '登出',
                         fn: function(){
-                            this.on(events.end, function(e){
+                            this.on('touchstart click', function(e){
                                 e.preventDefault();
                                 pageManager.navTo('login');
                             })
@@ -132,7 +131,7 @@ AppManager.prototype = {
         navManager.render(header);
         navManager.footerWrap.show();
         navManager.footerWrap.find('li').removeClass('active').eq(0).addClass('active');
-        $('#J_home_list li').off().on(events.end, function(e){
+        $('#J_home_list li').off().on('click', function(e){
             e.preventDefault();
             var $this = $(this);
             var name = $this.attr('data-nav');
@@ -155,7 +154,7 @@ AppManager.prototype = {
                         type: 'refresh',
                         text: '刷新',
                         fn: function(){
-                            this.on(events.end, function(e){
+                            this.on('touchstart click', function(e){
                                 e.preventDefault();
                                 alert('不要刷新我');
                             })
@@ -168,7 +167,7 @@ AppManager.prototype = {
 
         navManager.footerWrap.show();
         navManager.footerWrap.find('li').removeClass('active').eq(1).addClass('active');
-        $('.list-view li').off().on(events.end, function(){
+        $('.list-view li').off().on('click', function(){
             historyManager.add({
                 header: header,
                 page: {
@@ -195,7 +194,7 @@ AppManager.prototype = {
         };
         navManager.render(header);
         navManager.footerWrap.find('li').removeClass('active').eq(2).addClass('active');
-        $('.list-group li').off().on(events.end, function(e){
+        $('.list-group li').off().on('click', function(e){
             e.preventDefault();
             historyManager.add({
                 header: header,
@@ -210,7 +209,7 @@ AppManager.prototype = {
         this.scrollPanel('J_scroll_detail');
         var pageDetail =new PageDetail(this, navManager, pageManager, historyManager);
         pageDetail.init();
-        $('.tab-nav li').on(events.end, function(e){
+        $('.tab-nav li').on('click', function(e){
             e.preventDefault();
             var $this = $(this);
             var tabContent = $this.parent().parent().next().find('.tab-content');
@@ -230,7 +229,7 @@ AppManager.prototype = {
         };
         navManager.render(header);
         navManager.footerWrap.find('li').removeClass('active').eq(3).addClass('active');
-        $('#J_create').off().on(events.end, function(){
+        $('#J_create').off().on('click', function(){
             historyManager.add({
                 header: header,
                 page: {
@@ -270,7 +269,7 @@ AppManager.prototype = {
                 pageManager.stretchFooter(p);
                 _this.scrollPanel(p.name);
                 //
-                $('.list-group li').off().on(events.end, function(e){
+                $('.list-group li').off().on('click', function(e){
                     e.preventDefault();
                     historyManager.add({
                         header: newHeader,
@@ -281,11 +280,11 @@ AppManager.prototype = {
                     pageManager.navTo('about');
                 });
                 //fun
-                $('.J_alert').off().on(events.end, function(e){
+                $('.J_alert').off().on('click', function(e){
                     e.preventDefault();
                     alert('你点击了确定')
                 });
-                $('.J_back').off().on(events.end, function(e){
+                $('.J_back').off().on('click', function(e){
                     e.preventDefault();
                     historyManager.back();
                 })

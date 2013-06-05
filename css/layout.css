@@ -83,9 +83,9 @@ ul{
     top: 2.8em; 
     bottom: 2.7em;
     -webkit-backface-visibility: hidden;
-    -webkit-transition: -webkit-transform .6s, opacity .6s;
+    -webkit-transition: -webkit-transform .4s, opacity .4s;
     -webkit-transform: perspective(500px) translateX(100%);
-    opacity: 0;
+    visibility: hidden;
     
 }
 .page.no-effect{
@@ -93,15 +93,16 @@ ul{
 }
 .page.right{
     -webkit-transform: translateX(100%);
+    visibility: visible;
 }
 .page.left{
     -webkit-transform: translateX(-100%);
+    visibility: visible;
 }
 .page.active{
     -webkit-transform: translateX(0);
     z-index: 1;
-    opacity: 1;
-
+    visibility: visible;
 }
 .page.stretch{
     top: 0;

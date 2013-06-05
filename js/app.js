@@ -165,7 +165,7 @@ AppManager.prototype = {
 
         navManager.footerWrap.show();
         navManager.footerWrap.find('li').removeClass('active').eq(1).addClass('active');
-        $('.list-view li').off().on('touchstart click', function(e){
+        $('.list-view li').off().on('click', function(e){
             e.preventDefault();
             historyManager.add({
                 header: header,

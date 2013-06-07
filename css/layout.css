@@ -299,7 +299,7 @@ dl,dt,dd{
     float: left;
 }
 .list-head{
-    background-color: #666;
+    background-color: rgba(20, 20, 20, .9);
 }
 .list-head li{
     float: left;
@@ -492,15 +492,15 @@ a.nav-button{
     height: 1em;
     line-height: 1em;
     background-color: #333;
-    background-image: -webkit-gradient(linear, left bottom, left top, from(rgb(0, 0, 0)), color-stop(50%, rgb(4, 4, 4)), color-stop(50%, rgb(29, 29, 29)), to(rgb(114, 114, 114)));
+    background-image: -webkit-gradient(linear, left bottom, left top, from(rgb(0, 0, 0)), color-stop(50%, rgb(4, 4, 4)), color-stop(50%, rgb(29, 29, 29)), to(rgb(84, 84, 84)));
     /*box-shadow: 0 0 1px rgba(0, 0, 0, .5) inset;*/
-    box-shadow:0px 1px 0px rgba(255,255,255,0.5), 0px 0px 1px rgba(255,255,255,0.2), 0px 1px 1px rgba(0,0,0,0.2) inset,0px 100px 100px rgba(0,0,0,0.0) inset;
+    box-shadow:0px 1px 0px rgba(255,255,255,0.1), 0px 0px 1px rgba(255,255,255,0.2), 0px 1px 1px rgba(0,0,0,0.2) inset,0px 100px 100px rgba(0,0,0,0.2) inset;
     border-radius: 5px;
     color: #ccc;
 }
 a.nav-button:active{
     color: #fff;
-    box-shadow:0px 1px 0px rgba(255,255,255,0.5), 0px 0px 1px rgba(255,255,255,0.2), 0px 1px 1px rgba(0,0,0,0.2) inset,0px 100px 100px rgba(0,0,0,0.2) inset;
+    box-shadow:0px 1px 0px rgba(255,255,255,0.5), 0px 0px 1px rgba(255,255,255,0.2), 0px 1px 1px rgba(0,0,0,0.2) inset,0px 100px 100px rgba(0,0,0,0.4) inset;
 }
 .loading{
     width: 50px;

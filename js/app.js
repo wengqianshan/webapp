@@ -5,7 +5,7 @@ window.navManager = new NavManager();
 //应用管理======================================================
 var isTouch = 'ontouchstart' in window;
 var events = (isTouch) ? {start: 'touchstart', move: 'touchmove', end: 'touchend'} : {start: 'mousedown', move: 'mousemove', end: 'mouseup'};
-console.log(isTouch)
+console.log('isTouch: ', isTouch)
 var AppManager = function(){
 
 };
@@ -42,6 +42,7 @@ AppManager.prototype = {
 
         //动态创建页面例子
         var p = pageManager.createPage('', 'Hello UED');
+        console.log('page: ', p)
         //动态创建动态方法
         /*_this[_this.makeFun(p.name)] = function(e, pageName, fromPage, param){
             alert(arguments[1]);
@@ -251,7 +252,7 @@ AppManager.prototype = {
                             }
                         },
                         {
-                            text: "设置1",
+                            text: "查找",
                             cls: '',
                             fn: function(){
                                 $(this).on('click', function(e){

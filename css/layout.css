@@ -484,7 +484,6 @@ dl,dt,dd{
 }
 
 /*按钮*/
-.button{}
 .nav-button,
 a.nav-button{
     display: inline-block;

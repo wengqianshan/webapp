@@ -137,8 +137,19 @@
           pageObj.$.addClass('stretch-footer');
       },
       //收缩
-      shrink: function(){
-
+      shrink: function(page){
+          var pageObj = page || this.getActivePage();
+          pageObj.$.removeClass('stretch');
+      },
+      //收缩顶部
+      shrinkHeader: function(page){
+          var pageObj = page || this.getActivePage();
+          pageObj.$.removeClass('stretch-header');
+      },
+      //收缩底部
+      shrinkFooter: function(page){
+          var pageObj = page || this.getActivePage();
+          pageObj.$.removeClass('stretch-footer');
       }
   };
   window.PageManager = PageManager;

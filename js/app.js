@@ -83,9 +83,7 @@ AppManager.prototype = {
     },
     initLoginPage: function(e, pageName, fromPage, param){
         //console.log(e, pageName, fromPage, param, 'lll')
-        navManager.headerWrap.hide();
-        navManager.footerWrap.hide();
-        pageManager.stretch();
+        this.updateNavbar();
         $('#J_btn_login').off().on('click', function(){
             /*historyManager.add({
                 page: {
@@ -98,9 +96,27 @@ AppManager.prototype = {
         //滚动控制
         this.scrollPanel('J_page_login');
     },
+    //更新navbar
+    updateNavbar: function(header, footer){
+        if(!header){
+            navManager.headerWrap.hide();
+            pageManager.stretchHeader();
+        }else{
+            navManager.headerWrap.show();
+            pageManager.shrinkHeader();
+            navManager.render(header);
+        }
+        if(!footer){
+            navManager.footerWrap.hide();
+            pageManager.stretchFooter();
+        }else{
+            navManager.footerWrap.show();
+            pageManager.shrinkFooter();
+        }
+
+    },
     //Home
     initHomePage: function(){
-        navManager.headerWrap.show();
         var header = {
             title: {
                 text: 'Home Page'
@@ -127,8 +143,7 @@ AppManager.prototype = {
                 name: 'home'
             }
         });
-        navManager.render(header);
-        navManager.footerWrap.show();
+        this.updateNavbar(header);
         navManager.footerWrap.find('li').removeClass('active').eq(0).addClass('active');
         $('#J_home_list li').off().on('click', function(e){
             e.preventDefault();
@@ -142,7 +157,6 @@ AppManager.prototype = {
     //列表页
     initListPage: function(e, pageName, fromPage, param){
         //console.log(fromPage)
-        navManager.headerWrap.show();
         var header = {
             title: {
                 text: '服务器列表'
@@ -162,9 +176,7 @@ AppManager.prototype = {
                 ]
             }
         };
-        navManager.render(header);
-
-        navManager.footerWrap.show();
+        this.updateNavbar(header, true);
         navManager.footerWrap.find('li').removeClass('active').eq(1).addClass('active');
         $('.list-view li').off().on('click', function(e){
             e.preventDefault();
@@ -182,15 +194,13 @@ AppManager.prototype = {
     },
     initDetailPage: function(e, pageName, fromPage, param){
         //console.log(fromPage)
-        navManager.headerWrap.show();
-        navManager.footerWrap.show();
         var header = {
             title: {
                 text: '服务器详情'
             },
             right: {}
         };
-        navManager.render(header);
+        this.updateNavbar(header, true);
         navManager.footerWrap.find('li').removeClass('active').eq(2).addClass('active');
         $('.list-group li').off().on('click', function(e){
             e.preventDefault();
@@ -205,8 +215,10 @@ AppManager.prototype = {
         //滚动控制
         this.scrollPanel('J_scroll_chart');
         this.scrollPanel('J_scroll_detail');
+        //调用外部方法
         var pageDetail =new PageDetail(this, navManager, pageManager, historyManager);
         pageDetail.init();
+        //pageDetail.loadList();
         $('.tab-nav li').on('click', function(e){
             e.preventDefault();
             var $this = $(this);
@@ -226,7 +238,7 @@ AppManager.prototype = {
             },
             right: {}
         };
-        navManager.render(header);
+        this.updateNavbar(header, true);
         navManager.footerWrap.find('li').removeClass('active').eq(3).addClass('active');
         $('#J_create').off().on('click', function(){
             historyManager.add({
@@ -277,9 +289,6 @@ AppManager.prototype = {
             var $this= $(this);
             if($this.attr('data-nav')){
                 pageManager.navTo($this.attr('data-nav'));
-                navManager.render(newHeader);
-                navManager.footerWrap.hide();
-                pageManager.stretchFooter();
                 return false;
             }
             var html = new TemplateManager().load('tmpl');
@@ -288,10 +297,6 @@ AppManager.prototype = {
             
             //动态创建动态方法如: initXxxPage
             _this.initPageFn(p, function(e, pageName, fromPage, param){
-                //alert(arguments[1]);
-                //console.log(arguments)
-                navManager.render(newHeader);
-                navManager.footerWrap.hide();
                 p.$.attr('id', p.name);
                 p.$.css({
                     //backgroundColor: '#fff',
@@ -300,7 +305,7 @@ AppManager.prototype = {
                 }).find('.scroller').css({
                     paddingBottom: '50px'
                 });
-                pageManager.stretchFooter(p);
+                _this.updateNavbar(newHeader);
                 _this.scrollPanel(p.name);
                 //
                 $('.list-group li').off().on('click', function(e){

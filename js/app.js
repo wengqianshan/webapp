@@ -66,6 +66,7 @@ AppManager.prototype = {
     scrollPanel: function(id, option){
         var defaultOption = {
             scrollbarClass: 'myScrollbar',
+            checkDOMChanges: true,
             onBeforeScrollStart: function(e){
                 var target = e.target;
                 while (target.nodeType != 1) target = target.parentNode;
@@ -143,7 +144,7 @@ AppManager.prototype = {
                 name: 'home'
             }
         });
-        this.updateNavbar(header);
+        this.updateNavbar(header, true);
         navManager.footerWrap.find('li').removeClass('active').eq(0).addClass('active');
         $('#J_home_list li').off().on('click', function(e){
             e.preventDefault();
@@ -153,6 +154,9 @@ AppManager.prototype = {
         });
         //滚动控制
         this.scrollPanel('J_scroll_home');
+        //调用外部方法
+        var pageHome =new PageHome(this, navManager, pageManager, historyManager);
+        pageHome.init();
     },
     //列表页
     initListPage: function(e, pageName, fromPage, param){

@@ -2,8 +2,8 @@
   window.CONFIG = {
     button: {
         back: '<a href="#" class="nav-button nav-button-back">返回</a>',
-        refresh: '<a href="#" class="nav-btn nav-button-refresh">刷新</a>',
-        normal: '<a href="#" class="nav-btn">按钮</a>'
+        refresh: '<a href="#" class="nav-button nav-button-refresh">刷新</a>',
+        normal: '<a href="#" class="nav-button">按钮</a>'
     },
     header: {
             title: {
